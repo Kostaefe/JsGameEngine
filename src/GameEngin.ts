@@ -3,35 +3,27 @@
  * 
  * @version 1.0.0
  */
-class GameEngine {
+export class GameEngine {
 
     /**
      * The Canvas Object.
-     * 
-     * @type {HTMLCanvasElement}
      */
-    canvas;
+    canvas: HTMLCanvasElement;
 
     /**
      * The 2d Context.
-     * 
-     * @type {CanvasRenderingContext2D|null}
      */
-    context;
+    context: CanvasRenderingContext2D|null;
 
     /**
      * Frames per second.
-     * 
-     * @type {number}
      */
-    fps = 30;
+    fps: number = 30;
 
     /**
      * Creates the Canvas Element.
      */
-    createCanvas() {
-        this.canvas = document.createElement('canvas');
-
+    prepareCanvas() {
         this.canvas.width = window.innerWidth - 20;
         this.canvas.height = window.innerHeight - 20;
 
@@ -42,7 +34,8 @@ class GameEngine {
      * The Game Engine.
      */
     constructor() {
-        this.createCanvas();
+        this.canvas = document.createElement('canvas');
+        this.prepareCanvas();
 
         this.context = this.canvas.getContext('2d');
 
@@ -54,10 +47,10 @@ class GameEngine {
      */
     animate() {
         // First of all clear the canvas view.
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         // This is just an example of a black filled rectangle.
-        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context?.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         // Last request the Animation Frame.
         setTimeout(() => {
